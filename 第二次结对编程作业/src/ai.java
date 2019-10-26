@@ -4,12 +4,12 @@ public class ai
 	static String[]u=new String[5];
 	static int[][]a=new int[13][2],b=new int[13][2];
 	static boolean d;
-	static List<Integer>e,y[],z[];
+	static List<Integer>y[],z[];
 	static int x;
 	static String[]f(String s)
 	{
 		String t[]=s.split(" ");
-		int i,j,k,l,n,g;
+		int i,j,k,l,g;
 		for(i=0;i<13;i++)
 		{
 			b[i][0]=a[i][0]=t[i].charAt(0);
@@ -67,26 +67,24 @@ public class ai
 		if(j==13&&(i==3||i==5||i==8||i==10))return h("三同花");
 		for(k=j;k<13&&b[k][0]==b[j][0];k++);
 		if(k==13&&(j==8&&(i==3||i==5)||j==10&&i==5))return h("三同花");
-		e=new LinkedList<>();y=new List[4];z=new List[15];
+		y=new List[4];z=new List[15];
 		for(i=0;i<4;i++)y[i]=new ArrayList<>();
 		for(i=2;i<15;i++)z[i]=new ArrayList<>();
-		for(int[]f:a)e.add(4*f[1]+c(f[0]));
-		for(i=e.size()-1;i>=0;i--){j=e.get(i);y[j%4].add(j);z[j/4].add(j);}
+		for(i=a.length-1;i>=0;i--){k=c(a[i][0]);j=4*a[i][1]+k;y[k].add(j);z[a[i][1]].add(j);}
 		u=new String[6];
 		i:for(x=2;x>=0;x--)
 		{
-			n=e.size();
 			if(x!=0)
 			{
-				for(i=n-1;i>3;i-=j)
+				for(i=j=0;i<4;i++)if(y[i].size()>4)for(l=0;l<y[i].size()-4;l++)
 				{
-					l=e.get(i);
-					for(j=1;j<5&&e.contains(l-4*j);j++) ;
-					if(j==5)
-					{
-						d(new int[]{l-16,l-12,l-8,l-4,l},"同花顺");
-						continue i;
-					}
+					for(k=1;k<5&&y[i].get(l+k-1)-4==y[i].get(l+k);k++);
+					if(k==5&&j<y[i].get(l))j=y[i].get(l);
+				}
+				if(j!=0)
+				{
+					d(new int[]{j,j-4,j-8,j-12,j-16},"同花顺");
+					continue i;
 				}
 				for(i=14;i>1;i--)if(z[i].size()==4)
 				{
@@ -98,15 +96,27 @@ public class ai
 				}
 				for(i=14;i>1;i--)if(z[i].size()==3)
 				{
+					//不可能有6张相同的牌，所以葫芦中的对子越小越好，小心!!!!!!!!!
 					for(j=2;j<15;j++)if(z[j].size()==2)
 					{
 						d(new int[]{z[i].get(2),z[i].get(1),z[i].get(0),z[j].get(1),z[j].get(0)},"葫芦");
 						continue i;
 					}
+					for(j=2;j<i;j++)if(z[j].size()==3)
+					{
+						d(new int[]{z[i].get(2),z[i].get(1),z[i].get(0),z[j].get(2),z[j].get(1)},"葫芦");
+						continue i;
+					}
 				}
-				for(i=0;i<4;i++)if(y[i].size()>4)
+				for(i=k=0,j=-1;i<4;i++)if(y[i].size()>4)
 				{
-					d(new int[]{y[i].get(4),y[i].get(3),y[i].get(2),y[i].get(1),y[i].get(0)},"同花");
+					l=(((y[i].get(0)/4*15+y[i].get(1)/4)*15+y[i].get(2)/4)*15+y[i].get(3)/4)*15+y[i].get(4)/4;
+					if(k<l){k=l;j=i;}
+					
+				}
+				if(j!=-1)
+				{
+					d(new int[]{y[j].get(0),y[j].get(1),y[j].get(2),y[j].get(3),y[j].get(4)},"同花");
 					continue i;
 				}
 				for(i=14;i>5;i--)
@@ -114,7 +124,7 @@ public class ai
 					for(j=i;j>i-5&&z[j].size()>0;j--);
 					if(j==i-5)
 					{
-						d(new int[]{z[i-4].get(0),z[i-3].get(0),z[i-2].get(0),z[i-1].get(0),z[i].get(0)},"顺子");
+						d(new int[]{z[i].get(0),z[i-1].get(0),z[i-2].get(0),z[i-3].get(0),z[i-4].get(0)},"顺子");
 						continue i;
 					}
 				}
@@ -125,27 +135,34 @@ public class ai
 				{
 					for(j=2;z[j].size()!=1;j++);
 					for(k=j+1;z[k].size()!=1;k++);
-					d(new int[]{z[i].get(2),z[i].get(1),z[i].get(0),z[j].get(0),z[k].get(0)},"三条");
+					d(new int[]{z[i].get(2),z[i].get(1),z[i].get(0),z[k].get(0),z[j].get(0)},"三条");
 				}
 				else d(new int[]{z[i].get(2),z[i].get(1),z[i].get(0)},"三条");
 				continue i;
 			}
 			if(x!=0)
 			{
-				for(i=14;i>2;i--)if(z[i].size()==2)
+				for(i=14;i>2;i--)if(z[i].size()==2&&z[i-1].size()==2)
 				{
-					for(k=2;z[k].size()!=1;k++);
-					if(z[i-1].size()==2){d(new int[]{z[i-1].get(1),z[i-1].get(0),z[i].get(1),z[i].get(0),z[k].get(0)},"连对");continue i;}
-					for(j=i-2;j>1;j--)if(z[j].size()==2){d(new int[]{z[j].get(1),z[j].get(0),z[i].get(1),z[i].get(0),z[k].get(0)},"二对");continue i;}
+					for(k=14;k>1&&z[k].size()!=1;k--);
+					if(k==1)for(k=14;k>1&&z[k].size()!=2;k--);
+					d(new int[]{z[i].get(1),z[i].get(0),z[i-1].get(1),z[i-1].get(0),z[k].get(0)},"连对");
+					continue i;
+				}
+				for(i=14;i>3;i--)if(z[i].size()==2)
+				{
+					for(k=14;k>1&&z[k].size()!=1;k--);
+					if(k==1)for(k=14;k>1&&z[k].size()!=2;k--);
+					for(j=i-2;j>1;j--)if(z[j].size()==2){d(new int[]{z[i].get(1),z[i].get(0),z[j].get(1),z[j].get(0),z[k].get(0)},"二对");continue i;}
 				}
 			}
 			for(i=14;i>1;i--)if(z[i].size()==2)
 			{
-				for(j=2;z[j].size()!=1;j++);
+				for(j=14;z[j].size()!=1;j--);
 				if(x!=0)
 				{
-					for(k=j+1;z[k].size()!=1;k++);
-					for(l=k+1;z[l].size()!=1;l++);
+					for(k=j-1;z[k].size()!=1;k--);
+					for(l=k-1;z[l].size()!=1;l--);
 					d(new int[]{z[i].get(1),z[i].get(0),z[j].get(0),z[k].get(0),z[l].get(0)},"对子");
 				}
 				else d(new int[]{z[i].get(1),z[i].get(0),z[j].get(0)},"对子");
@@ -153,15 +170,15 @@ public class ai
 			}
 			for(i=14;i>1;i--)if(z[i].size()==1)
 			{
-				for(j=2;z[j].size()!=1;j++);
-				for(k=j+1;z[k].size()!=1;k++);
+				for(j=i-1;z[j].size()!=1;j--);
+				for(k=j-1;z[k].size()!=1;k--);
 				if(x!=0)
 				{
-					for(l=k+1;z[l].size()!=1;l++);
-					for(g=l+1;z[g].size()!=1;g++);
-					d(new int[]{z[j].get(0),z[k].get(0),z[l].get(0),z[g].get(0),z[i].get(0)},"散牌");
+					for(l=k-1;z[l].size()!=1;l--);
+					for(g=l-1;z[g].size()!=1;g--);
+					d(new int[]{z[i].get(0),z[j].get(0),z[k].get(0),z[l].get(0),z[g].get(0)},"散牌");
 				}
-				else d(new int[]{z[j].get(0),z[k].get(0),z[i].get(0)},"散牌");
+				else d(new int[]{z[i].get(0),z[j].get(0),z[k].get(0)},"散牌");
 				continue i;
 			}
 		}
@@ -172,9 +189,8 @@ public class ai
 		u[x+3]=s;s="";int j;Integer k;
 		for(int i:a)
 		{
-			e.remove(k=Integer.valueOf(i));
-			y[i%4].remove(k);
-			z[i/4].remove(k);
+			//居然可以作弊!!!!!!!!!!
+			y[i%4].remove(k=i);z[i/4].remove(k);
 			j=i%4;
 			if(j==0)s+='#';
 			else if(j==1)s+='$';
@@ -274,9 +290,15 @@ public class ai
         ,"#J $J &J $8 *2 *3 &4 #5 #6 #7 *9 *Q *A"
         ,"*5 #8 *A $3 *8 *9 &8 #A $A &A *10 *J *Q"
         ,"*2 *3 #4 #5 $5 $J #K $A &8 *8 *9 #J &A"
-        ,"#8 $8 *8 #3 #5 $5 &5 &6 $2 *2 $Q &Q *Q"
+        ,"#8 $8 *8 #3 #5 $5 &5 &3 $2 *2 $Q &Q *Q"
         ,"*5 #6 &6 $Q #A $A &A #8 $9 &10 *J *A $3"
-        ,"#3 *9 *10 *J *5 &9 $6 *6 #7 $7 &Q *8 *Q"}
+        ,"#3 *9 *10 *J *5 &9 $6 *6 #7 $7 &Q *8 *Q"
+		,"$4 $5 #7 *2 *3 *6 *K *A &2 &3 &4 &10 &K"
+		,"$2 $9 &K #10 $10 &10 $7 &7 &3 #4 #5 #6 *7"
+		,"$2 $5 #10 *2 *4 *10 *Q *A &3 &5 &6 &J &A"
+		,"$Q #K $8 #2 $A &2 $3 #7 &7 *3 *5 *A &4"
+		,"*2 $J $Q &6 $7 *9 &K #J #K &A #7 #8 #A"
+		,"$8 &10 #Q *8 *9 *10 #J &Q #4 $4 *4 #6 *6"}
 		,j,d[]={{"*2 *3 *4","*5 *6 *7 *8 *9","*10 *J *Q *K *A","*2 *3 *4 *5 *6 *7 *8 *9 *10 *J *Q *K *A","至尊清龙"}
 		,{"*2 $3 *4","*5 #6 *7 *8 *9","*10 *J *Q &K &A","*2 $3 *4 *5 #6 *7 *8 *9 *10 *J *Q &K &A","一条龙"}
 		,{"*2 &J *J","#Q $Q &Q *Q #K","$K &K *K #A $A","*2 &J *J #Q $Q &Q *Q #K $K &K *K #A $A","十二皇族"}
@@ -291,13 +313,19 @@ public class ai
 		,{"#2 $2 $3","&3 #5 $5 *6 &8","*8 #9 $9 &A *A","#2 $2 $3 &3 #5 $5 *6 &8 *8 #9 $9 &A *A","六对半"}
 		,{"*5 #6 $6","#7 $7 #8 $8 &8","$9 &9 &10 &J &Q","*5 #6 $6 #7 $7 #8 $8 &8 $9 &9 &10 &J &Q","三顺子"}
 		,{"$4 #6 $6","#7 $7 #8 $8 &8","$9 &9 &10 &J &Q","$4 #6 $6 #7 $7 #8 $8 &8 $9 &9 &10 &J &Q","三同花"}
-		,{"$7 *9 #K","&8 *8 *3 #4 #5","#J $J $A &A *2","散牌","对子","二对"}
-		,{"#J $J &J","&4 #5 #6 #7 $8","*2 *3 *9 *Q *A","三条","顺子","同花"}
-		,{"#8 &8 *5","#A $A &A *A $3","*8 *9 *10 *J *Q","对子","炸弹","同花顺"}
-		,{"#4 *9 #K","#5 $5 &8 *8 *3","#J $J $A &A *2","散牌","二对","二对"}
-		,{"#5 $5 &5","#8 $8 *8 #3 &6","$Q &Q *Q $2 *2","三条","三条","葫芦"}
-		,{"#6 &6 *5","#8 $9 &10 *J $Q","#A $A &A *A $3","对子","顺子","炸弹"}
-		,{"*5 &9 &Q","$6 *6 #7 $7 #3","*8 *9 *10 *J *Q","散牌","连对","同花顺"}};
+		,{"#4 *3 *2","&8 *8 *9 $7 #5","$A &A #J $J #K","散牌","对子","二对"}
+		,{"#J $J &J","$8 #7 #6 #5 &4","*A *Q *9 *3 *2","三条","顺子","同花"}
+		,{"#8 &8 *5","#A $A &A *A $3","*Q *J *10 *9 *8","对子","炸弹","同花顺"}
+		,{"#4 *3 *2","&8 *8 #5 $5 *9","$A &A #J $J #K","散牌","二对","二对"}
+		,{"#5 $5 &5","#8 $8 *8 #3 &3","$Q &Q *Q $2 *2","三条","葫芦","葫芦"}
+		,{"#6 &6 *5","$Q *J &10 $9 #8","#A $A &A *A $3","对子","顺子","炸弹"}
+		,{"&9 *5 #3","#7 $7 $6 *6 &Q","*Q *J *10 *9 *8","散牌","连对","同花顺"}
+		,{"#7 $5 $4","&K &10 &4 &3 &2","*A *K *6 *3 *2","散牌","同花","同花"}
+		,{"&K $9 $2","*7 #6 #5 #4 &3","#10 $10 &10 $7 &7","散牌","顺子","葫芦"}
+		,{"#10 $5 $2","&A &J &6 &5 &3","*A *Q *10 *4 *2","散牌","同花","同花"}
+		,{"$8 *5 &4","$A *A #7 &7 $Q","$3 *3 #2 &2 #K","散牌","二对","连对"}
+		,{"$7 &6 *2","&A &K $Q $J *9","#A #K #J #8 #7","散牌","散牌","同花"}
+		,{"#Q &10 $8","&Q #J *10 *9 *8","#4 $4 *4 #6 *6","散牌","顺子","葫芦"}};
 		for(i=0;i<d.length;i++)if(!Arrays.equals(d[i],j=f(a[i])))
 		{
 			System.out.println(i+1+"：\n正解：");

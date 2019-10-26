@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b917cfd1-8b10-423f-b0fb-943b7b53a573" name="默认的" comment="" />
+    <list default="true" id="b917cfd1-8b10-423f-b0fb-943b7b53a573" name="默认的" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/_jar/第二次结对编程作业.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/_jar/第二次结对编程作业.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/第二次结对编程作业/META-INF/第二次结对编程作业.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/第二次结对编程作业/ai.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/第二次结对编程作业/ai.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui$1$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui$1$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui$1$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui$1$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui$1$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui$1$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui$1$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui$2$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui$2$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/第二次结对编程作业/ui.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ai.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ai.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +31,12 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
   <component name="ProjectId" id="1STF2rE0DPL8jj9Mh354AbGtrV7" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -24,6 +45,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -37,9 +59,23 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="应用程序.ui">
+  <component name="RunManager" selected="Application.ui">
+    <configuration name="ai" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ai" />
+      <module name="第二次结对编程作业" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ai" type="Application" factoryName="应用程序" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="ai" />
+      <module name="第二次结对编程作业" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ui" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ui" />
       <module name="第二次结对编程作业" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -54,8 +90,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.ui" />
-        <item itemvalue="应用程序.ai" />
+        <item itemvalue="Application.ui" />
+        <item itemvalue="Application.ai" />
       </list>
     </recent_temporary>
   </component>
@@ -84,10 +120,26 @@
       <workItem from="1571660685122" duration="43500000" />
       <workItem from="1571801820533" duration="33886000" />
       <workItem from="1571841597363" duration="13493000" />
+      <workItem from="1571897875524" duration="2312000" />
+      <workItem from="1571904204852" duration="6510000" />
+      <workItem from="1572001896680" duration="25783000" />
+      <workItem from="1572091890413" duration="32000" />
+      <workItem from="1572092059257" duration="511000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
